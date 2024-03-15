@@ -10,8 +10,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <CssBaseline />
+  // <React.StrictMode>
+    // <CssBaseline />
     <App />
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
