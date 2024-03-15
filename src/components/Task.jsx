@@ -9,7 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import CommentIcon from "@mui/icons-material/Comment";
 
-export default function Task({ task, trash }) {
+export default function Task({ task, state, id }) {
   // const [checked, setChecked] = React.useState([0]);
 
   // const handleToggle = (value) => () => {
@@ -27,25 +27,13 @@ export default function Task({ task, trash }) {
 
   return (
     <div>
-      {/* <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}> */}
-        {/* {[0, 1, 2, 3].map((value) => {
-          const labelId = `checkbox-list-label-${value}`; */}
-
-
-            <ListItem
-              // secondaryAction={
-              //   <IconButton edge="end" aria-label="comments">
-              //     <CommentIcon />
-              //   </IconButton>
-              // }
-              disablePadding
-            >
-              <ListItemButton
-                role={undefined}
-                // onClick={handleToggle(value)}
-                dense
-              >
-                {/* <ListItemIcon>
+      <ListItem disablePadding id={id}>
+        <ListItemButton
+          role={undefined}
+          // onClick={handleToggle(value)}
+          dense
+        >
+          {/* <ListItemIcon>
                   <Checkbox
                     edge="start"
                     checked={checked.indexOf(value) !== -1}
@@ -54,14 +42,9 @@ export default function Task({ task, trash }) {
                     inputProps={{ "aria-labelledby": labelId }}
                   />
                 </ListItemIcon> */}
-                <ListItemText task={task} />
-              </ListItemButton>
-            </ListItem>
-        {/* })} */}
-      {/* </List> */}
-
-      <TaskButtons />   {/* Toggle */}
-      <TaskButtons />   {/* Trash */}
+          <ListItemText value={task} />
+        </ListItemButton>
+      </ListItem>
     </div>
   );
 }
