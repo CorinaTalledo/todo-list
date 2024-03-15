@@ -34,8 +34,8 @@ export default function Form({ addTask }) {
 
   return (
       <FormControl component="form" sx={{ width: '50%' }} noValidate autoComplete="off" onSubmit={handleSubmit} >
-        <TextField id="filled-basic" label="Insert Task" variant="filled" sx={{ width: '80%' }} onChange={handleInput} />
-        <IconButton aria-label="add task" sx={{ width: '10%' }} type='submit' onClick={() => addTask(newTask)} >
+        <TextField id="filled-basic" label="Insert Task" variant="filled" sx={{ width: '80%' }} onChange={handleInput} value={newTask.taskDescription} />
+        <IconButton aria-label="add task" sx={{ width: '10%' }} type='submit' >
           <AddBoxOutlinedIcon />
         </IconButton>
       </FormControl>
