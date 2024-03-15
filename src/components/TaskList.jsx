@@ -6,9 +6,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import List from "@mui/material/List";
 
 
-export default function TaskList() {
+
+export default function TaskList({ tasks }) {
+
+  // const [age, setAge] = React.useState('');
+
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   return (
     <Box>
@@ -21,7 +29,17 @@ export default function TaskList() {
         </Select>
       </FormControl>
         
-      <Task />
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      {tasks.map((task) =>(
+        <Task 
+          key={task.id}
+          id={task.id}
+          task={task.task}
+          state={task.completed}
+        />
+        ))}
+      </List>
+      
     </Box>
   )
 }

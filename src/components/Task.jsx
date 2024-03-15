@@ -1,7 +1,6 @@
 import React from "react";
 import TaskButtons from "./TaskButtons";
 
-import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -10,7 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import CommentIcon from "@mui/icons-material/Comment";
 
-export default function Task(trash) {
+export default function Task({ task, trash }) {
   // const [checked, setChecked] = React.useState([0]);
 
   // const handleToggle = (value) => () => {
@@ -28,12 +27,12 @@ export default function Task(trash) {
 
   return (
     <div>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {[0, 1, 2, 3].map((value) => {
-          const labelId = `checkbox-list-label-${value}`;
+      {/* <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}> */}
+        {/* {[0, 1, 2, 3].map((value) => {
+          const labelId = `checkbox-list-label-${value}`; */}
 
-          return (
-            <ListItem key={value} 
+
+            <ListItem
               // secondaryAction={
               //   <IconButton edge="end" aria-label="comments">
               //     <CommentIcon />
@@ -55,12 +54,11 @@ export default function Task(trash) {
                     inputProps={{ "aria-labelledby": labelId }}
                   />
                 </ListItemIcon> */}
-                <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+                <ListItemText task={task} />
               </ListItemButton>
             </ListItem>
-          );
-        })}
-      </List>
+        {/* })} */}
+      {/* </List> */}
 
       <TaskButtons />   {/* Toggle */}
       <TaskButtons />   {/* Trash */}
