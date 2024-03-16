@@ -1,4 +1,3 @@
-import React from 'react'
 import Task from './Task'
 
 import Box from '@mui/material/Box';
@@ -10,7 +9,7 @@ import List from "@mui/material/List";
 
 
 
-export default function TaskList({ tasks }) {
+export default function TaskList({ tasks, deleteTask }) {
 
   return (
     <Box>
@@ -20,8 +19,10 @@ export default function TaskList({ tasks }) {
           key={task.id}
           id={task.id}
           taskDescription={task.taskDescription}
-          state={task.completed}
-        />
+          state={task.state}
+
+          deleteTask={deleteTask}
+      />
         ))}
       </List>
     </Box>

@@ -11,7 +11,6 @@ function App() {
     // Todas las tareas
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("task")) || []) 
 
-    console.log(tasks);
 
     const addTask = (newTask) =>{
       const updatedTasks = [...tasks, newTask];
@@ -20,11 +19,19 @@ function App() {
     }
 
 
+    const deleteTask = (id) =>{
+      setTasks(tasks.filter((task) => task.id !== id))
+
+      const updatedTasks = tasks.filter((task) => task.id !== id);
+      localStorage.setItem("task", JSON.stringify(updatedTasks))
+    }
+
+
   return (
     <>
       <Header />
       <Form addTask={addTask} />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
       <Footer />
     </>
   )
