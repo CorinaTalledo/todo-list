@@ -12,34 +12,18 @@ import List from "@mui/material/List";
 
 export default function TaskList({ tasks }) {
 
-  // const [age, setAge] = React.useState('');
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
-
   return (
     <Box>
-      <FormControl sx={{ width: '40%' }}>
-        <InputLabel id="demo-simple-select-label">Select</InputLabel>
-        <Select labelId="demo-simple-select-label" id="demo-simple-select" /* value={select} */ label="Select" /* onChange={handleChange} */ >
-          <MenuItem /* value={all} */>Todas</MenuItem>
-          <MenuItem /* value={done} */>Completas</MenuItem>
-          <MenuItem /* value={todo} */>Incompletas</MenuItem>
-        </Select>
-      </FormControl>
-        
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {tasks.map((task) =>(
         <Task 
           key={task.id}
           id={task.id}
-          task={task.task}
+          taskDescription={task.taskDescription}
           state={task.completed}
         />
         ))}
       </List>
-      
     </Box>
   )
 }

@@ -1,15 +1,13 @@
-import React from "react";
-import TaskButtons from "./TaskButtons";
-
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
-import CommentIcon from "@mui/icons-material/Comment";
+import DeleteIcon from '@mui/icons-material/Delete';
+import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
+import GradeIcon from '@mui/icons-material/Grade';
+import SentimentSatisfiedAltOutlinedIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
+import SentimentDissatisfiedOutlinedIcon from '@mui/icons-material/SentimentDissatisfiedOutlined';
 
-export default function Task({ task, state, id }) {
+export default function Task({ taskDescription, state, id }) {
   // const [checked, setChecked] = React.useState([0]);
 
   // const handleToggle = (value) => () => {
@@ -27,23 +25,16 @@ export default function Task({ task, state, id }) {
 
   return (
     <div>
-      <ListItem disablePadding id={id}>
-        <ListItemButton
-          role={undefined}
-          // onClick={handleToggle(value)}
-          dense
-        >
-          {/* <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </ListItemIcon> */}
-          <ListItemText value={task} />
-        </ListItemButton>
+      <ListItem disablePadding id={id} state={state}>
+          <IconButton aria-label="delete">
+            <SentimentDissatisfiedOutlinedIcon />
+          </IconButton>
+
+          <ListItemText primary={taskDescription} />
+          
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
       </ListItem>
     </div>
   );
