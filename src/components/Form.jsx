@@ -10,7 +10,7 @@ export default function Form({ addTask }) {
   // // Estado para guardar la nueva tarea que va a agregarse al listado general
   const [newTask, setNewTask] = useState({
     taskDescription: "",
-    state: false,
+    state: "",
     id: crypto.randomUUID()
   })
 
