@@ -1,15 +1,12 @@
 import Task from './Task'
 
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import List from "@mui/material/List";
 
 
 
-export default function TaskList({ tasks, deleteTask }) {
+export default function TaskList({ tasks, deleteTask, handleToggle }) {
 
   return (
     <Box>
@@ -22,6 +19,7 @@ export default function TaskList({ tasks, deleteTask }) {
           state={task.state}
 
           deleteTask={deleteTask}
+          handleToggle={handleToggle}
       />
         ))}
       </List>
