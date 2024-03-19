@@ -27,11 +27,23 @@ function App() {
     }
 
 
+    // Crear un nuevo array que copie las tareas y busque por id (metodo find). A esa tarea encontrada cambiarle el estado a Checked o similar
+    const handleToggle = (id) =>{
+      const newArray = [...tasks]
+      const completedTask = newArray.find((task) => task.id === id)
+
+      completedTask.state = !completedTask.state
+
+      setTasks(newArray)
+      localStorage.setItem("task", JSON.stringify(newArray))
+    }
+
+
   return (
     <>
       <Header />
       <Form addTask={addTask} />
-      <TaskList tasks={tasks} deleteTask={deleteTask} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} handleToggle={handleToggle} />
       <Footer />
     </>
   )
