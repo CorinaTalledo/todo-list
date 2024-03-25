@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 
 import { useState } from 'react'
+import SelectComponent from './components/SelectComponent'
 
 function App() {
 
@@ -27,7 +28,6 @@ function App() {
     }
 
 
-    // Crear un nuevo array que copie las tareas y busque por id (metodo find). A esa tarea encontrada cambiarle el estado a Checked o similar
     const handleToggle = (id) =>{
       const newArray = [...tasks]
       const completedTask = newArray.find((task) => task.id === id)
@@ -43,6 +43,7 @@ function App() {
     <>
       <Header />
       <Form addTask={addTask} />
+      <SelectComponent setTasks={setTasks} />
       <TaskList tasks={tasks} deleteTask={deleteTask} handleToggle={handleToggle} />
       <Footer />
     </>

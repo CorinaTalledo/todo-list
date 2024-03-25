@@ -1,15 +1,17 @@
 import Task from './Task'
 
 import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
 import List from "@mui/material/List";
+import SelectComponent from './SelectComponent';
 
+import { useState } from 'react';
 
 
 export default function TaskList({ tasks, deleteTask, handleToggle }) {
 
   return (
     <Box>
+
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {tasks.map((task) =>(
         <Task 
@@ -22,7 +24,7 @@ export default function TaskList({ tasks, deleteTask, handleToggle }) {
           handleToggle={handleToggle}
       />
         ))}
-      </List>
+      </List>      
     </Box>
   )
 }
