@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       <Header />
-      <Form addTask={addTask} />
+      <Form addTask={addTask} tasks={tasks} />
       <SelectComponent setTasks={setTasks} />
       <TaskList tasks={tasks} deleteTask={deleteTask} handleToggle={handleToggle} />
       <Footer />
@@ -51,22 +51,4 @@ function App() {
 }
 
 export default App
-
-
-
-// PREGUNTAS TP
-
-// Por que hay que crear una constante diferente para sumar una nueva tarea y no se puede hacer asi:
-// const addTask = (newTask) =>{
-//   setTasks([...tasks, newTask])
-//   localStorage.setItem("task", JSON.stringify(newTask))
-// }
-
-
-// En algun lado, por alguna razon se duplican pero ademas despues se borran las cosas.
-
-
-
-
-
 
