@@ -1,45 +1,76 @@
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import FormControl from '@mui/material/FormControl';
+import { TextField, IconButton, FormControl, Stack } from "@mui/material";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
-import { useFormik } from 'formik';  
+import { useFormik } from "formik";
 
 export default function Form({ addTask, tasks }) {
-
   const formik = useFormik({
-    initialValues:{
+    initialValues: {
       taskDescription: "",
-      state: false,
-      id: crypto.randomUUID()
+      state: false
+      /* "id: crypto.randomUUID()" se agrega en la funcion onSubmit para que no duplique el id y por ende la key de las tareas */
     },
-    validate: (values) =>{
+    validate: (values) => {
       const errors = {};
-        if (!values.taskDescription) {
-          errors.taskDescription = 'Escribe una tarea';
-        } else if (values.taskDescription.length > 30) {
-          errors.taskDescription = 'No puedes ingresar tareas de más de 30 caracteres';
-        } else if (values.taskDescription.length < 5) {
-          errors.taskDescription = 'Por favor, ingresa una tarea que contenga mas de 5 caracteres';
-        } else if (tasks.includes(values.taskDescription))
-          errors.taskDescription = 'Ya has ingresado esta tarea, ingresa otra o destildá la existente';
+      if (!values.taskDescription) {
+        errors.taskDescription =
+          "Escribe una tarea para poder visualizarla";
+      } else if (values.taskDescription.length > 45) {
+        errors.taskDescription =
+          "No puedes ingresar tareas de más de 45 caracteres";
+      } else if (values.taskDescription.length < 5) {
+        errors.taskDescription =
+          "Por favor, ingresa una tarea que contenga más de 5 caracteres";
+      } else if (
+        tasks.some((task) => task.taskDescription === values.taskDescription)
+      ) {
+        errors.taskDescription =
+          "Ya has ingresado esta tarea, ingresá otra o destildá la existente";
+      }
       return errors;
     },
-    onSubmit: (values) =>{
-      addTask(values)
-    }
+    onSubmit: (values, { resetForm }) => {
+      addTask({ ...values, id: crypto.randomUUID() });
+      resetForm();
+    },
   });
 
-
   return (
-      <FormControl component="form" sx={{ width: '50%' }} noValidate autoComplete="off" onSubmit={formik.handleSubmit} >
-        <TextField id="taskDescription" name='taskDescription' label="Insert Task" variant="filled" sx={{ width: '80%' }} onChange={formik.handleChange} value={formik.values.taskDescription} onBlur={formik.handleBlur} />
+    <FormControl
+      component="form"
+      fullWidth
+      noValidate
+      autoComplete="off"
+      onSubmit={formik.handleSubmit}
+    >
+      <Stack direction="row" alignItems="center" spacing={0.5}>
+        <TextField
+          id="taskDescription"
+          name="taskDescription"
+          label="Escribe una tarea"
+          variant="outlined"
+          sx={{ width: "100%" }}
+          onChange={formik.handleChange}
+          value={formik.values.taskDescription}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.taskDescription &&
+            Boolean(formik.errors.taskDescription)
+          }
+          helperText={
+            formik.touched.taskDescription && formik.errors.taskDescription
+          }
+        />
 
-        {formik.touched.taskDescription && formik.errors.taskDescription ? (<div>{formik.errors.taskDescription}</div>) : null}
-
-        <IconButton aria-label="add task" sx={{ width: '10%' }} type='submit' >
+        <IconButton
+          aria-label="add task"
+          size="small"
+          sx={{ p: 1.5 }}
+          type="submit"
+        >
           <AddBoxOutlinedIcon />
         </IconButton>
-      </FormControl>
-  )
+      </Stack>
+    </FormControl>
+  );
 }
